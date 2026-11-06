@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>巧妹的 Wonderland</title>
+<title>巧妹 Wonderland｜平面設計師作品集</title>
+<meta name="description" content="巧妹，接案平面設計師，專注品牌識別、包裝與主視覺設計。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --void: #050a24;
@@ -14,246 +18,336 @@
     --pink: #ff5fb8;
     --blush: #ffb3dd;
     --ice: #bfe3ff;
-    --star: #ffffff;
     --text: #f5f3ff;
     --muted: #c4c6ee;
-    --radius: 28px;
-    --glass: linear-gradient(160deg, rgba(120,110,255,.16), rgba(255,95,184,.06) 60%, rgba(10,16,60,.35));
-    --edge: rgba(190,175,255,.28);
+    --edge: rgba(190,175,255,.24);
+    --page: min(1160px, 100% - 3rem);
+    --h1-desktop: 4.75rem;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { min-height: 100%; -webkit-text-size-adjust: 100%; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
   body {
     min-height: 100vh;
-    font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Helvetica Neue", Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* Inter 不含中文字，中文交由系統黑體顯示 */
+    font-family: "Inter", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
     color: var(--text);
     line-height: 1.75;
+    background: var(--void);
     -webkit-font-smoothing: antialiased;
-    background:
-      radial-gradient(44rem 30rem at 85% 8%, rgba(106,53,201,.55), transparent 65%),
-      radial-gradient(40rem 30rem at 8% 30%, rgba(255,95,184,.28), transparent 65%),
-      radial-gradient(52rem 34rem at 70% 62%, rgba(40,70,200,.35), transparent 65%),
-      radial-gradient(60rem 36rem at 25% 108%, rgba(255,95,184,.30), transparent 65%),
-      linear-gradient(180deg, var(--void) 0%, var(--navy) 42%, var(--indigo) 100%);
-    background-attachment: fixed;
     overflow-x: hidden;
   }
 
-  /* 星空：三層不同大小與節奏的星點 */
+  /* 深色漸層背景與星點 */
   body::before, body::after {
     content: "";
-    position: fixed; inset: 0;
+    position: fixed;
+    inset: 0;
     z-index: 0;
     pointer-events: none;
   }
   body::before {
+    background:
+      radial-gradient(46rem 32rem at 88% 6%, rgba(106,53,201,.5), transparent 68%),
+      radial-gradient(38rem 30rem at 4% 38%, rgba(255,95,184,.16), transparent 68%),
+      radial-gradient(56rem 36rem at 40% 110%, rgba(255,95,184,.18), transparent 68%),
+      linear-gradient(180deg, var(--void) 0%, var(--navy) 55%, var(--indigo) 100%);
+  }
+  body::after {
     background-image:
       radial-gradient(1px 1px at 22px 34px, #fff 50%, transparent 100%),
       radial-gradient(1px 1px at 96px 120px, rgba(255,255,255,.8) 50%, transparent 100%),
       radial-gradient(1.2px 1.2px at 170px 60px, #fff 50%, transparent 100%),
       radial-gradient(1px 1px at 60px 210px, rgba(191,227,255,.9) 50%, transparent 100%),
-      radial-gradient(1px 1px at 205px 188px, rgba(255,255,255,.7) 50%, transparent 100%),
       radial-gradient(1.2px 1.2px at 130px 250px, rgba(255,179,221,.9) 50%, transparent 100%),
-      radial-gradient(1px 1px at 12px 140px, rgba(255,255,255,.75) 50%, transparent 100%),
       radial-gradient(1px 1px at 232px 20px, #fff 50%, transparent 100%);
-    background-size: 240px 280px;
-    animation: twinkle 6s ease-in-out infinite alternate;
+    background-size: 240px 280px, 370px 310px, 530px 430px;
+    opacity: .5;
   }
-  body::after {
-    background-image:
-      radial-gradient(2px 2px at 80px 70px, #fff 40%, transparent 100%),
-      radial-gradient(2.4px 2.4px at 310px 190px, var(--blush) 40%, transparent 100%),
-      radial-gradient(2px 2px at 180px 330px, var(--ice) 40%, transparent 100%),
-      radial-gradient(2.6px 2.6px at 380px 40px, #fff 40%, transparent 100%),
-      radial-gradient(2px 2px at 440px 300px, #fff 40%, transparent 100%),
-      radial-gradient(1.6px 1.6px at 40px 260px, var(--lilac) 40%, transparent 100%);
-    background-size: 470px 390px;
-    filter: drop-shadow(0 0 4px rgba(255,255,255,.8));
-    animation: twinkle 4s ease-in-out 1.2s infinite alternate;
-  }
-  @keyframes twinkle { from { opacity: .35; } to { opacity: 1; } }
+  header, main, footer { position: relative; z-index: 1; }
+  main { flex: 1; overflow-x: clip; } /* 裁掉超出右側的裝飾光環，垂直方向不受影響 */
 
-  main {
-    position: relative;
-    z-index: 1;
-    max-width: 1000px;
+  /* 淡入動畫 */
+  @keyframes fade-up { from { opacity: 0; transform: translateY(20px); } }
+  @keyframes fade-in { from { opacity: 0; } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .reveal { animation: fade-up .8s cubic-bezier(.2,.7,.2,1) var(--delay, 0s) both; }
+
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--ice); outline-offset: 4px; border-radius: 6px; }
+
+  /* 頁首 */
+  .site-header {
+    width: var(--page);
     margin: 0 auto;
-    padding: clamp(3rem, 9vw, 5.5rem) 1.5rem 4rem;
+    padding: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .brand { display: inline-flex; align-items: center; gap: .65rem; font-weight: 700; letter-spacing: .01em; }
+  .brand-mark {
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, #fff 0 16%, transparent 38%),
+      conic-gradient(var(--pink), var(--violet), #2b4fd8, var(--lilac), var(--pink));
+    box-shadow: 0 0 14px rgba(255,95,184,.6);
+  }
+  .site-nav { color: var(--muted); font-size: .95rem; font-weight: 500; transition: color .2s ease; }
+  .site-nav:hover { color: #fff; }
+
+  /* 英雄區塊 */
+  .hero {
+    position: relative;
+    width: var(--page);
+    margin: 0 auto;
+    min-height: min(78vh, 760px);
+    padding: clamp(3.5rem, 9vw, 6.5rem) 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    justify-content: center;
+    align-items: flex-start;
   }
-
-  /* 星系光圈 */
   .portal {
-    width: clamp(140px, 28vw, 190px);
+    position: absolute;
+    top: 50%;
+    right: -7%;
+    width: clamp(320px, 44vw, 600px);
     aspect-ratio: 1;
-    border-radius: 50%;
-    position: relative;
-    background:
-      radial-gradient(circle, #fff 0 6%, rgba(255,179,221,.9) 14%, transparent 34%),
-      conic-gradient(from 0deg, var(--pink), var(--violet), #2b4fd8, var(--lilac), var(--pink));
-    -webkit-mask: radial-gradient(circle, #000 28%, transparent 70%);
-            mask: radial-gradient(circle, #000 28%, transparent 70%);
-    box-shadow: 0 0 80px 10px rgba(106,53,201,.6);
-    animation: spin 40s linear infinite;
+    margin-top: calc(clamp(320px, 44vw, 600px) / -2);
+    opacity: .72;
+    pointer-events: none;
+    animation: fade-in 1.8s ease both;
   }
-  .portal::after {
+  .portal::before {
     content: "";
-    position: absolute; inset: 14%;
+    position: absolute;
+    inset: 0;
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,.35);
-    box-shadow: 0 0 24px rgba(255,95,184,.5), inset 0 0 24px rgba(106,53,201,.5);
+    background:
+      radial-gradient(circle, #fff 0 3%, rgba(255,179,221,.85) 10%, transparent 30%),
+      conic-gradient(var(--pink), var(--violet), #2b4fd8, var(--lilac), var(--pink));
+    -webkit-mask: radial-gradient(circle, #000 18%, transparent 68%);
+            mask: radial-gradient(circle, #000 18%, transparent 68%);
+    animation: spin 60s linear infinite;
   }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* 標題 */
+  .eyebrow {
+    position: relative;
+    font-size: .95rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    color: var(--blush);
+  }
   h1 {
-    margin-top: 2rem;
-    font-size: clamp(2.4rem, 7.5vw, 4.4rem);
+    position: relative;
+    margin-top: 1.25rem;
+    font-size: clamp(1.75rem, 8.2vw, var(--h1-desktop));
     font-weight: 800;
-    letter-spacing: .03em;
-    line-height: 1.15;
-    background: linear-gradient(90deg, #fff 0%, var(--blush) 30%, var(--lilac) 62%, var(--ice) 100%);
+    line-height: 1.2;
+    letter-spacing: -.01em;
+    background: linear-gradient(90deg, #fff 0%, #fff 35%, var(--blush) 72%, var(--lilac) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    filter: drop-shadow(0 0 22px rgba(185,162,255,.5));
   }
-  .sub {
-    margin-top: 1.1rem;
-    padding: .4rem 1.3rem;
-    border-radius: 999px;
-    border: 1px solid var(--edge);
-    background: rgba(20,24,80,.45);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    color: var(--text);
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: .16em;
-  }
-
-  /* 創作卡片 */
-  .works {
-    margin-top: clamp(2.75rem, 7vw, 4.5rem);
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-  }
-  .work {
+  .br-mobile { display: none; }
+  .lead {
     position: relative;
-    padding: 1.75rem 1.6rem 1.9rem;
-    border-radius: var(--radius);
-    text-align: left;
-    background: var(--glass), rgba(8,12,48,.55);
-    border: 1px solid var(--edge);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 20px 44px -14px rgba(2,4,24,.8);
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-  }
-  .work:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255,255,255,.5);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 26px 50px -14px var(--glow);
-  }
-  .icon {
-    width: 54px; height: 54px;
-    margin-bottom: 1.25rem;
-    border-radius: 18px;
-    display: grid; place-items: center;
-    background: var(--g);
-    box-shadow: 0 8px 26px -4px var(--glow);
-  }
-  .icon svg { width: 27px; height: 27px; stroke: var(--void); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .music  { --g: linear-gradient(135deg, var(--pink), var(--blush)); --glow: rgba(255,95,184,.6); }
-  .dance  { --g: linear-gradient(135deg, var(--ice), var(--lilac));   --glow: rgba(150,170,255,.55); }
-  .paint  { --g: linear-gradient(135deg, #fff, var(--lilac));         --glow: rgba(185,162,255,.55); }
-  .work h2 { font-size: 1.4rem; font-weight: 700; letter-spacing: .1em; line-height: 1.3; margin-bottom: .5rem; }
-  .work p { color: var(--muted); font-size: 1rem; line-height: 1.8; }
-
-  /* 名言 */
-  blockquote {
-    margin-top: clamp(1.5rem, 4vw, 2rem);
-    width: 100%;
-    max-width: 680px;
-    padding: clamp(1.75rem, 5vw, 2.5rem) clamp(1.5rem, 5vw, 2.75rem);
-    border-radius: 32px;
-    background: var(--glass), rgba(8,12,48,.55);
-    border: 1px solid var(--edge);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 20px 44px -14px rgba(2,4,24,.8);
-  }
-  blockquote p {
-    font-size: clamp(1.2rem, 3.4vw, 1.55rem);
-    font-weight: 600;
-    line-height: 1.75;
-    color: #fff;
-    text-shadow: 0 0 26px rgba(255,179,221,.45);
-  }
-  blockquote .en {
-    margin-top: .75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    font-style: italic;
-    line-height: 1.7;
+    margin-top: 1.5rem;
+    max-width: 34rem;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
     color: var(--muted);
-    text-shadow: none;
   }
-  blockquote cite {
-    display: block;
-    margin-top: 1.25rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(190,175,255,.22);
-    font-style: normal;
-    font-size: .92rem;
-    letter-spacing: .06em;
-    color: var(--blush);
+  .actions {
+    position: relative;
+    margin-top: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .9rem;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.25rem;
+    padding: 0 1.9rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary {
+    color: var(--void);
+    background: linear-gradient(120deg, var(--blush), var(--pink) 90%);
+    box-shadow: 0 12px 32px -10px rgba(255,95,184,.75);
+  }
+  .btn-primary:hover { box-shadow: 0 16px 38px -8px rgba(255,95,184,.9); }
+  .btn-secondary {
+    color: var(--text);
+    border-color: rgba(255,255,255,.3);
+    background: rgba(255,255,255,.05);
+    -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+  }
+  .btn-secondary:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.1); }
+
+  /* 精選作品 */
+  .works {
+    width: var(--page);
+    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(4.5rem, 9vw, 7rem);
+    scroll-margin-top: 1rem;
+  }
+  .works-head { max-width: 36rem; margin-bottom: clamp(2rem, 4vw, 3rem); }
+  h2 { font-size: clamp(1.75rem, 3.6vw, 2.5rem); font-weight: 700; line-height: 1.3; }
+  .works-head p { margin-top: .6rem; color: var(--muted); }
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+  .card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid var(--edge);
+    background: rgba(10,15,58,.62);
+    -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+    box-shadow: 0 24px 48px -22px rgba(2,4,24,.9);
+    transition: translate .3s ease, border-color .3s ease;
+  }
+  .card:hover { translate: 0 -6px; border-color: rgba(255,255,255,.45); }
+  .art {
+    aspect-ratio: 16 / 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--art);
+    color: #fff;
+  }
+  .art svg {
+    width: 76px;
+    height: 76px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .art-moon { --art: radial-gradient(circle at 75% 15%, rgba(191,227,255,.5), transparent 55%), linear-gradient(145deg, #1a2a86, #4b2aa8); }
+  .art-jar { --art: radial-gradient(circle at 20% 15%, rgba(255,255,255,.3), transparent 50%), linear-gradient(145deg, #d43f97, #7c36c4); }
+  .art-sound { --art: radial-gradient(circle at 80% 85%, rgba(255,179,221,.45), transparent 55%), linear-gradient(145deg, #4a1f9e, #16164f); }
+  .card-body { padding: 1.5rem 1.5rem 1.75rem; }
+  .tag { font-size: .85rem; font-weight: 600; letter-spacing: .06em; color: var(--blush); }
+  h3 { margin-top: .3rem; font-size: 1.3rem; font-weight: 700; line-height: 1.4; }
+  .card-body p:last-child { margin-top: .7rem; font-size: 1rem; color: var(--muted); }
+
+  /* 頁尾 */
+  .site-footer {
+    width: var(--page);
+    margin: 0 auto;
+    padding: 1.75rem 0 2.25rem;
+    border-top: 1px solid var(--edge);
+    font-size: .9rem;
+    color: var(--muted);
   }
 
-  @media (max-width: 760px) {
-    .works { grid-template-columns: 1fr; max-width: 420px; }
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
+    .hero { min-height: 0; }
+    .portal { top: -6rem; right: -38%; margin-top: 0; opacity: .4; }
+    /* 桌面版的 75%；15.2vw 在 375px 剛好等於 57px，更窄的手機再等比縮小 */
+    h1 { font-size: min(15.2vw, calc(var(--h1-desktop) * .75)); }
+    .brand, .site-nav { min-height: 44px; }
+    .site-nav { display: inline-flex; align-items: center; }
+  }
+  @media (max-width: 600px) {
+    .br-mobile { display: inline; }
+  }
+  @media (max-width: 480px) {
+    .actions { width: 100%; }
+    .btn { flex: 1 1 100%; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .portal, body::before, body::after { animation: none; }
-    .work { transition: none; }
-    .work:hover { transform: none; }
+    html { scroll-behavior: auto; }
+    .reveal, .portal, .portal::before { animation: none; }
+    .btn, .card { transition: none; }
+    .btn:hover { transform: none; }
+    .card:hover { translate: none; }
   }
 </style>
 </head>
 <body>
-<main>
-  <div class="portal" role="img" aria-label="發光的入口光圈"></div>
-  <h1>巧妹的 Wonderland</h1>
-  <p class="sub">音樂．舞蹈．繪畫</p>
 
-  <section class="works" aria-label="創作">
-    <article class="work music">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg></div>
-      <h2>音樂</h2>
-      <p>把心情譜成會發光的旋律。</p>
-    </article>
-    <article class="work dance">
-      <div class="icon"><svg viewBox="0 0 24 24"><circle cx="13" cy="4.5" r="2"/><path d="M13 7.5c0 4-2 5-5 8M13 7.5c1 3 4 4 6 3M10 14l3 3 3 4"/></svg></div>
-      <h2>舞蹈</h2>
-      <p>讓身體在兔子洞裡自由墜落。</p>
-    </article>
-    <article class="work paint">
-      <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 4c-6 1-10 5-12 10l2 2c5-2 9-6 10-12z"/><path d="M8 14c-2.5 0-4 1.5-4 4 0 1.5-.5 2-1 2.5 3 .5 7 0 7-4"/></svg></div>
-      <h2>繪畫</h2>
-      <p>用顏色畫出沒有地圖的地方。</p>
-    </article>
+<header class="site-header reveal">
+  <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>巧妹 Wonderland</a>
+  <a class="site-nav" href="#works">精選作品</a>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="portal" aria-hidden="true"></div>
+    <p class="eyebrow reveal" style="--delay:.1s">平面設計師・接案合作</p>
+    <h1 id="hero-title" class="reveal" style="--delay:.2s">把天馬行空<br class="br-mobile">的想像，<br>變成讓人<br class="br-mobile">記住的品牌</h1>
+    <p class="lead reveal" style="--delay:.35s">我是巧妹，專注品牌識別、包裝與主視覺設計。從釐清概念到完稿輸出，陪你把品牌的故事說得清楚又動人。</p>
+    <div class="actions reveal" style="--delay:.5s">
+      <!-- 請將 hello@example.com 換成你的聯絡信箱 -->
+      <a class="btn btn-primary" href="mailto:hello@example.com">與我聯繫</a>
+      <a class="btn btn-secondary" href="#works">觀看作品</a>
+    </div>
   </section>
 
-  <blockquote>
-    <p>回到昨天沒有用，因為那時的我是另一個人了。</p>
-    <p class="en">It’s no use going back to yesterday, because I was a different person then.</p>
-    <cite>— 路易斯・卡羅《愛麗絲夢遊仙境》</cite>
-  </blockquote>
+  <section class="works" id="works" aria-labelledby="works-title">
+    <div class="works-head reveal" style="--delay:.6s">
+      <h2 id="works-title">精選作品</h2>
+      <p>每個專案都從一個核心想法出發，再延伸成完整的視覺語言。</p>
+    </div>
+
+    <div class="grid">
+      <!-- 以下三件為範例內容，請換成你的實際作品 -->
+      <article class="card reveal" style="--delay:.7s">
+        <div class="art art-moon" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><path d="M32 10a22 22 0 0 1 0 44 30 30 0 0 0 0-44z" fill="currentColor"/><circle cx="53" cy="11" r="1.5" fill="currentColor"/><circle cx="9" cy="54" r="1" fill="currentColor"/></svg>
+        </div>
+        <div class="card-body">
+          <p class="tag">品牌識別</p>
+          <h3>月映茶室</h3>
+          <p>以月相的盈缺對應茶葉的發酵深淺，讓標誌隨產品系列改變形狀，再用藍紫色調帶出夜晚品茶的寧靜。</p>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--delay:.8s">
+        <div class="art art-jar" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><rect x="19" y="8" width="26" height="8" rx="2"/><path d="M22 16v3c-4 2-6 5-6 9v22a6 6 0 0 0 6 6h20a6 6 0 0 0 6-6V28c0-4-2-7-6-9v-3"/><path d="M16 32c5-3 8 3 16 0s11-2 16 0"/><circle cx="32" cy="44" r="4"/></svg>
+        </div>
+        <div class="card-body">
+          <p class="tag">包裝設計</p>
+          <h3>迷途果醬</h3>
+          <p>把每種口味畫成一座手繪小島，瓶身標籤並排時會拼出完整地圖，讓挑選與收藏都成為探索的一部分。</p>
+        </div>
+      </article>
+
+      <article class="card reveal" style="--delay:.9s">
+        <div class="art art-sound" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><rect x="12" y="6" width="40" height="52" rx="3"/><path d="M20 28v8M26 22v20M32 17v30M38 24v16M44 29v6"/><path d="M20 52h24"/></svg>
+        </div>
+        <div class="card-body">
+          <p class="tag">活動主視覺</p>
+          <h3>夜行音樂祭</h3>
+          <p>將節奏轉譯成疏密不同的光線，從海報到入場手環共用同一組波形系統，讓音樂在視覺上也能被看見。</p>
+        </div>
+      </article>
+    </div>
+  </section>
 </main>
+
+<footer class="site-footer">
+  <p>© 2026 巧妹 Wonderland. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
